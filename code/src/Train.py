@@ -6,9 +6,9 @@ from pytz import timezone
 import torch
 from torch.utils.data import DataLoader
 
-import src.Models as models
-from src.Datasets import Datasets
-from src.Utils import label_accuracy_score, add_hist
+import Models as models
+from Datasets import Datasets
+from Utils import label_accuracy_score, add_hist
 
 
 class Trainer:

@@ -1,5 +1,3 @@
-# src/inference.py
-
 import os
 import sys
 import torch
@@ -8,13 +6,13 @@ from PIL import Image
 import torchvision.transforms as T
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from src.Models import DeepLabV3PlusEnhanced
+from src.Models import Unet
 
 
 class InferenceEngine:
     def __init__(self, model_path, num_classes=5, encoder="resnet50", device=None):
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
-        self.model = DeepLabV3PlusEnhanced(
+        self.model = Unet(
             encoder=encoder,
             num_classes=num_classes,
             encoder_weights="imagenet"

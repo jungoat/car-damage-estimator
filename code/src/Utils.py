@@ -37,7 +37,7 @@ class COCOFormatter:
         annotations = [os.path.join(self.ann_dir, f.replace(".jpg", ".json")) for f in subset_list]
 
         if not annotations:
-            print(f"[경고] '{self.ann_dir}' 폴더에 .json이 없습니다.")
+            print(f"'{self.ann_dir}' json x.")
             return
 
         base_json = self.load_json(annotations[0])
@@ -79,9 +79,8 @@ class COCOFormatter:
         self.save_json(base_json, os.path.join(self.output_dir, f"{alias}.json"))
 
 
-# ============================
-# 평가용 함수 / focal loss
-# ============================
+
+# focal loss
 def label_accuracy_score(hist):
     acc = np.diag(hist).sum() / hist.sum()
     acc_cls = np.nanmean(np.diag(hist) / hist.sum(axis=1))
@@ -101,23 +100,9 @@ def add_hist(hist, label_trues, label_preds, n_class):
         hist += _fast_hist(lt.flatten(), lp.flatten(), n_class)
     return hist
 
-class FocalLoss(nn.Module):
-    def __init__(self, alpha=0.25, gamma=2):
-        super().__init__()
-        self.alpha = torch.tensor([alpha, 1 - alpha]).cuda()
-        self.gamma = gamma
-
-    def forward(self, inputs, targets):
-        ce_loss = nn.CrossEntropyLoss()(inputs, targets)
-        targets = targets.long()
-        at = self.alpha.gather(0, targets.view(-1))
-        pt = torch.exp(-ce_loss)
-        return (at * (1 - pt) ** self.gamma * ce_loss).mean()
 
 
-# ============================
-# CLI 실행
-# ============================
+# CLI 
 if __name__ == "__main__":
     import argparse
 

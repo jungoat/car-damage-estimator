@@ -7,8 +7,8 @@ import tqdm
 import torch
 from torch.utils.data import DataLoader
 
-from src.Datasets import Datasets
-from src.Utils import label_accuracy_score, add_hist
+from Datasets import Datasets
+from Utils import label_accuracy_score, add_hist
 
 
 class Evaluation:
