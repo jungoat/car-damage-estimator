@@ -47,13 +47,13 @@ pip install -r requirements.txt
 ### 2. Training
 
 ```bash
-python main.py --task [TASK_NAME] --label [CLASS_LABEL] --dataset train
+python main.py --task [TASK_NAME] --dataset train
 ```
 
 예시:
 
 ```bash
-python main.py --task seg --label C_ER_S --dataset train
+python main.py --task seg --dataset train
 ```
 
 ### 3. Inference
