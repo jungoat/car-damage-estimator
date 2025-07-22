@@ -34,32 +34,13 @@ cap_code/
 
 ---
 
-##  How to Run
 
-### 1. Environment Setup
+### Environment Setup
 
 ```bash
 conda create -n damage python=3.9
 conda activate damage
 pip install -r requirements.txt
-```
-
-### 2. Training
-
-```bash
-python main.py --task [TASK_NAME] --dataset train
-```
-
-예시:
-
-```bash
-python main.py --task seg --dataset train
-```
-
-### 3. Inference
-
-```bash
-python test_infer.py
 ```
 
 ---
